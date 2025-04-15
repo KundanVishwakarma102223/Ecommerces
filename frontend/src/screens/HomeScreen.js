@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
-import { useEffect, useReducer } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import { Helmet } from 'react-helmet-async';
@@ -43,12 +42,12 @@ export default function HomeScreen() {
     };
 
     fetchData();
-  }, []);
+  }, []); // Empty array ensures this runs only once on mount
 
   return (
     <div>
       <Helmet>
-        <title>Anastacia</title>
+        <title>Anastacia - Home</title>
       </Helmet>
       <h1>Featured Products</h1>
       <br />
@@ -60,7 +59,7 @@ export default function HomeScreen() {
         ) : (
           <Row>
             {products.map((product) => (
-              <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+              <Col key={product._id} sm={6} md={4} lg={3} className="mb-3">
                 <Product product={product}></Product>
               </Col>
             ))}
