@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import {
-  BrowserRouter as Router, // Only use Router once
+  BrowserRouter as Router,
   Route,
   Routes,
+  Link, // ✅ Import added here
 } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Store } from './Store';
@@ -11,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 
-// Importing your screens and components
+// Importing screens and components
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
@@ -66,7 +67,7 @@ export default function App() {
     <Router>
       <div className={sidebarIsOpen ? 'd-flex flex-column site-container active-cont' : 'd-flex flex-column site-container'}>
         <ToastContainer position="bottom-center" limit={1} />
-        
+
         {/* Header with navigation */}
         <header>
           <Navbar className="navbar-custom" variant="dark" expand="lg">
