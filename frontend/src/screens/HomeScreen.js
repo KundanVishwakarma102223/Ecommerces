@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import logger from 'use-reducer-logger';
 import { useEffect, useReducer } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
@@ -25,7 +24,8 @@ const reducer = (state, action) => {
 // HomeScreen component
 export default function HomeScreen() {
 
-  const [{ loading, error, product }, dispatch] = useReducer(logger(reducer), {
+  // Using useReducer without the logger
+  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     product: [],
     loading: true,
     error: '',
@@ -46,14 +46,14 @@ export default function HomeScreen() {
 
     fetchData();
 
-  }, []);
+  }, []); // Empty dependency array so it runs once on component mount
 
   return (
     <div>
       <Helmet>
         <title>Anastacia</title>
       </Helmet>
-      <h1>Features Products</h1>
+      <h1>Featured Products</h1>
       <br />
       <div className="products">
         {loading ? (
@@ -73,4 +73,3 @@ export default function HomeScreen() {
     </div>
   );
 }
- 
