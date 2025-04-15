@@ -13,7 +13,7 @@ const reducer = (state, action) => {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
-      return { ...state, product: action.payload, loading: false };
+      return { ...state, products: action.payload, loading: false };
     case 'FETCH_FAIL':
       return { ...state, error: action.payload, loading: false };
     default:
@@ -23,21 +23,19 @@ const reducer = (state, action) => {
 
 // HomeScreen component
 export default function HomeScreen() {
-
-  // Using useReducer without the logger
-  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
-    product: [],
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+    products: [],
     loading: true,
     error: '',
   });
 
   useEffect(() => {
-
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        // Use the backend API URL from the .env file
-        const result = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/products`);
+        const result = await axios.get(
+          `${process.env.REACT_APP_API_BASE_URL}/api/products`
+        );
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
@@ -45,8 +43,7 @@ export default function HomeScreen() {
     };
 
     fetchData();
-
-  }, []); // Empty dependency array so it runs once on component mount
+  }, []);
 
   return (
     <div>
@@ -62,7 +59,7 @@ export default function HomeScreen() {
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
-            {product.map((product) => (
+            {products.map((product) => (
               <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
                 <Product product={product}></Product>
               </Col>
