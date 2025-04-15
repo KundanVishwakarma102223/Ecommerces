@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:5000", // Proxy for local development API requests
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,10 +23,10 @@
     "web-vitals": "^3.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-scripts start", // Development server command
+    "build": "react-scripts build", // Production build command
+    "test": "react-scripts test", // Run tests
+    "eject": "react-scripts eject" // Eject if needed for customization
   },
   "eslintConfig": {
     "extends": [
