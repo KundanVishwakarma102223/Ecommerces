@@ -2,7 +2,7 @@ services:
   - type: static_site
     name: ecommerces-frontend
     env: node
-    buildCommand: npm install --legacy-peer-deps
+    buildCommand: npm install --legacy-peer-deps  # Use --legacy-peer-deps flag here
     startCommand: npm start
     staticDir: frontend/build
     rootDir: frontend
